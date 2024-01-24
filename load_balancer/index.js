@@ -8,5 +8,9 @@ const server = app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
-  res.status(200).send("Counter from " + req.hostname + " : " + ++counter);
+  if (counter >= 5) {
+    server.close();
+  } else {
+    res.status(200).send("Counter from " + req.hostname + " : " + ++counter);
+  }
 });
